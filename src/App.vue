@@ -1,16 +1,17 @@
 <template>
   <div id="app">
-    <Updata>上传</Updata>
+    <router-view></router-view>
+    <!-- <Updata>上传</Updata> -->
     <!-- <Button>选择</Button> -->
   </div>
 </template>
 <script>
-import Updata from './views/Home.vue'
+// import Updata from './views/Home.vue'
 export default {
-  name: 'app',
-  components: {
-    Updata
-  }
+  name: 'app'
+  // components: {
+  //   Updata
+  // }
 }
 </script>
 <style>
