@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <!-- <Updata>上传</Updata> -->
-    <!-- <Button>选择</Button> -->
   </div>
 </template>
 <script>
