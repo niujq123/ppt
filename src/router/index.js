@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/deploy',
     name: 'deploy',
-    component: () => import('../views/Index.vue')
+    component: resolve => require(['../views/Index.vue'], resolve)
   }
 ]
 

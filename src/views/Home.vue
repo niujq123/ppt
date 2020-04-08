@@ -1,6 +1,11 @@
 <template>
   <div class="home">
     <h2>
+      vuex{{count}}
+      {{countPlusLocalState}}
+      {{counts}}
+    </h2>
+    <h2>
       演示演示样式{{time|normalTime('/')}}
       <img src="../assets/next.png" alt="测试图片" v-view-image>
       <icon-svg icon-class="ppt"/>
@@ -17,12 +22,14 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'home',
   data () {
     return {
       time: new Date().getTime(),
       list: null,
+      num: 1,
       swiperOptions: {
         effect: 'coverflow',
         // grabCursor: true,
@@ -45,11 +52,26 @@ export default {
   computed: {
     swiper () {
       return this.$refs.mySwiper.$swiper
-    }
+    },
+    // count () {
+    //   return this.$store.state.count
+    // },
+    counts () {
+      return this.$store.getters.counts
+    },
+    ...mapState({
+      count: 'count',
+      countPlusLocalState (state) {
+        console.log(this.num)
+        return state.count + this.num
+      }
+
+    })
+
   },
   created () {
     this.init()
-    this.initWebSocket()
+    // this.initWebSocket()
   },
   methods: {
     init () {
@@ -70,7 +92,7 @@ export default {
     },
     websocketonerror () {
       // 连接建立失败重连
-      this.initWebSocket()
+      // this.initWebSocket()
       alert('链接失败')
     },
     websocketsend (Data) {

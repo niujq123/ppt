@@ -155,13 +155,13 @@ export default {
       }
     },
     handleRemove (file, fileList) {
-      console.log(file, fileList)
+      // console.log(file, fileList)
     },
     handlePreview (file) {
-      console.log(file)
+      // console.log(file)
     },
     handleChange (file, fileList) {
-      console.log(fileList)
+      // console.log(fileList)
     },
     del (item) {
       this.$getFN({
