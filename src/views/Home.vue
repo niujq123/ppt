@@ -1,11 +1,12 @@
 <template>
   <div class="home">
-    <h2>
+    <h2 v-loading="loading">
       vuex{{count}}
       {{countPlusLocalState}}
       {{counts}}
+      {{countbyid}}
     </h2>
-    <h2>
+    <h2 @click="increment(2)">
       演示演示样式{{time|normalTime('/')}}
       <img src="../assets/next.png" alt="测试图片" v-view-image>
       <icon-svg icon-class="ppt"/>
@@ -22,11 +23,12 @@
   </div>
 </template>
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'home',
   data () {
     return {
+      loading: false,
       time: new Date().getTime(),
       list: null,
       num: 1,
@@ -56,13 +58,18 @@ export default {
     // count () {
     //   return this.$store.state.count
     // },
-    counts () {
-      return this.$store.getters.counts
+    // counts () {
+    //   return this.$store.getters.counts
+    // },
+    countbyid () {
+      return this.$store.getters.countbyid(10)
     },
+    ...mapGetters(['counts']
+
+    ),
     ...mapState({
       count: 'count',
       countPlusLocalState (state) {
-        console.log(this.num)
         return state.count + this.num
       }
 
@@ -74,6 +81,12 @@ export default {
     // this.initWebSocket()
   },
   methods: {
+    ...mapMutations([
+      'increment'
+    ]
+
+    ),
+
     init () {
       this.$getFN({
         type: 'post',

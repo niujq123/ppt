@@ -10,11 +10,16 @@ export default new Vuex.Store({
   getters: {
     counts: (state) => {
       return state.count + 1
+    },
+    countbyid: (state) => (id) => {
+      return state.count + id
     }
   },
   mutations: {
-    increment (state) {
-      state.count++
+    increment (state, payload) {
+      // console.log(payload)
+      state.count += payload
+      console.log(state.count)
     }
   },
   actions: {

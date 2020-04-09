@@ -8,6 +8,7 @@ import * as filters from './filters/index'
 import https from './api/http.js'
 import './icons/index.js'
 import { viewImage } from './directive/index'
+import './style/theme/index.css'
 viewImage(Vue)
 Object.keys(filters).forEach(key => Vue.filter(key, filters[key]))
 Vue.use(https)
