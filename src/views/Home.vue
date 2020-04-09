@@ -6,13 +6,14 @@
       {{counts}}
       {{countbyid}}
     </h2>
-    <h2 @click="increment(2)">
+    <h2>
       演示演示样式{{time|normalTime('/')}}
-      <img src="../assets/next.png" alt="测试图片" v-view-image>
+      <img src="../assets/next.png" alt="测试图片" v-view-image @click="increment(2)">
       <icon-svg icon-class="ppt"/>
       <icon-svg icon-class="fz"></icon-svg>
        <router-link to="/deploy"><i class="el-icon-s-tools" style="color: #fff;position: absolute;right: 100px;font-size: 50px;top: 90px;"></i></router-link>
     </h2>
+    <h2  @click="setincrement(2)" style="color:#000">点我</h2>
     <div class="example-3d">
       <swiper ref="mySwiper" :options="swiperOptions">
         <swiper-slide v-for="item in list" :key="item.id"><span @click="websocketsend(item)"  style="width:322px;height:388px;line-height: 388px;cursor:pointer">{{item.suffix}}</span></swiper-slide>
@@ -23,7 +24,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapGetters, mapMutations } from 'vuex'
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'home',
   data () {
@@ -81,12 +82,16 @@ export default {
     // this.initWebSocket()
   },
   methods: {
+    addincrement (amount) {
+      console.log(1)
+      this.$store.dispatch('increment', amount)
+    },
+    ...mapActions(['setincrement']),
     ...mapMutations([
       'increment'
     ]
 
     ),
-
     init () {
       this.$getFN({
         type: 'post',

@@ -20,9 +20,16 @@ export default new Vuex.Store({
       // console.log(payload)
       state.count += payload
       console.log(state.count)
+    },
+    addincrement (state) {
+      state.count++
     }
   },
   actions: {
+    setincrement (context, amount) {
+      console.log(amount)
+      context.commit('increment', amount)
+    }
   },
   modules: {
   }
